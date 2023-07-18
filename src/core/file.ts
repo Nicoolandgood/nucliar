@@ -1,6 +1,6 @@
 import { render } from 'squirrelly';
-import { dirname, basename, join } from "path";
-import { writeFile } from 'fs/promises';
+import { dirname, basename, join, normalize } from "path";
+import { writeFile, mkdir } from 'fs/promises';
 
 export abstract class GeneratedFile {
     
@@ -9,8 +9,11 @@ export abstract class GeneratedFile {
     
     constructor(
         _name: string,
+        _path?: string,
     ) {
-        this._path = dirname(_name);
+        // Checking if path was given. If not, extracting possible
+        // path in name string.
+        this._path = _path ? normalize(_path) :dirname(_name);
         _name = basename(_name);
         this._name = this.computeName(_name);
     };
@@ -27,9 +30,10 @@ export abstract class GeneratedFile {
     /**
      * Getter returning an object that will be
      * passed to the template engine before rendering.
-     * - Needs to be implemented.
      */
-    abstract get renderData(): object;
+    get renderData(): any {
+        return this;
+    };
     
     /**
      * Getter returning the boilerplate template.
@@ -49,7 +53,9 @@ export abstract class GeneratedFile {
      * Creates the file on disk.
      */
     async create() {
-        return await writeFile(this.path, this.render());
+        // TODO: look for any pre-existing and warn
+        await mkdir(this.path, { recursive: true });
+        await writeFile(this.filepath, this.render());
     }
 
     /**
@@ -59,21 +65,38 @@ export abstract class GeneratedFile {
     abstract get extension(): string;
 
     /**
-     * Getter returning the file short name.
+     * File short name.
      */
     get name() {
         return this._name;
     }
 
     /**
-     * Getter returning the complete file name
-     * (name + extension).
+     * Complete file name (name + extension).
      */
     get filename() {
         return `${this.name}.${this.extension}`;
     }
 
+    /**
+     * Complete file path (path + filename).
+     */
+    get filepath() {
+        return join(this._path, this.filename);;
+    }
+
+    /**
+     * Path of the directory where the file is.
+     */
     get path() {
-        return join(this._path, this.filename);
+        return this._path;
+    }
+
+    setPath(value: string) {
+        this._path = normalize(value);
+    }
+
+    toString() {
+        return this.render();
     }
 }

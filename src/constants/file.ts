@@ -1,6 +1,6 @@
 export enum Language {
-    TYPESCRIPT = "TYPESCRIPT",
-    JAVASCRIPT = "JAVASCRIPT",
+    TYPESCRIPT = "typescript",
+    JAVASCRIPT = "javascript",
 }
 
 export const LANGUAGE_EXTENTION = {
@@ -9,9 +9,9 @@ export const LANGUAGE_EXTENTION = {
 } as const;
 
 export enum StyleLanguage {
-    CSS = "CSS",
-    LESS = "LESS",
-    SCASS = "SCASS",
+    CSS = "css",
+    LESS = "less",
+    SCASS = "scass",
 }
 
 export const STYLE_EXTENSION = {
