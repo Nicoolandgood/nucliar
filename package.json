@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./dist",
     "build": "rm -rf ./dist && tsc",
-    "run:dev": "ts-node -r tsconfig-paths/register ./src/cli.ts"
+    "run:dev": "ts-node ./src/cli.ts"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,6 @@
     "@commander-js/extra-typings": "^11.0.0",
     "@types/node": "^20.4.2",
     "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.6"
   },
   "dependencies": {
