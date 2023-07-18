@@ -1,5 +1,5 @@
 {
-  "name": "nuclir",
+  "name": "nucliar",
   "version": "1.0.0",
   "description": "Command-line tool to create React components.",
   "main": "dist/index.js",
@@ -12,12 +12,14 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@commander-js/extra-typings": "^11.0.0",
     "@types/node": "^20.4.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
   "dependencies": {
     "chalk": "^5.3.0",
-    "commander": "^11.0.0"
+    "commander": "^11.0.0",
+    "squirrelly": "^9.0.0"
   }
 }
