@@ -1,6 +1,6 @@
 # Nucliar
 A command line tool to generate boilerplate React elements.
-Nuclear is still in **WIP** state, all of its wanted features are listed below.
+Nucliar is still in **WIP** state, all of its wanted features are listed below.
 
 ## Todos
 
