@@ -4,6 +4,7 @@ import { ComponentType } from "../constants/component";
 import { StyleLanguage } from "../constants/file";
 import { Style } from "../core/style";
 import { join } from "path";
+import { GenerateOptions } from "../interfaces/commands";
 
 const COMPONENTS_MAP = {
     [ComponentType.DEFAULT] : FuncComponent,
@@ -14,16 +15,7 @@ const COMPONENTS_MAP = {
 
 const COMPONENTS_MAP_KEYS = Object.keys(COMPONENTS_MAP);
 
-interface GenerateComponentOptions {
-    style?: boolean;
-    dryRun?: boolean;
-    ts?: boolean;
-    jsx?: boolean;
-    lazy?: boolean;
-    preprocessor?: string | boolean;
-}
-
-async function handler(type: string, name: string, options: GenerateComponentOptions) {
+async function handler(type: string, name: string, options: GenerateOptions) {
 
 
     if(!type || !(type in COMPONENTS_MAP)){
