@@ -51,3 +51,6 @@ The `type` can take many values, nucliar supports 4 out of the box: `component`,
  - [x] Generate style sheet (with or without any preprocessor)
  - [ ] Generate custom templates
  - [x] Use of a local configuration file
+ - [ ] Create documentation
+ - [ ] Automate package publishing
+ - [ ] Write tests
