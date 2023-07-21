@@ -2,6 +2,9 @@ import { STYLE_EXTENSION, StyleLanguage } from "../constants/file";
 import { cssStyle } from "../templates/style";
 import { GeneratedFile } from "./file";
 
+/**
+ * Base class to generate style sheets.
+ */
 export class Style extends GeneratedFile {
 
     constructor(

@@ -2,13 +2,34 @@ import { render } from 'squirrelly';
 import { dirname, basename, join, normalize } from "path";
 import { writeFile, mkdir } from 'fs/promises';
 
+/**
+ * Base class to generate any file.
+ * Extend this class to create your own file generator.
+ * 
+ * Example:
+ * ```js
+ * class JSONFile extends GeneratedFile {
+ *       
+ *      constructor(name, content) {
+ *          super(name);
+ *          this.content = content;
+ *      }
+ * 
+ *      get extension() {
+ *          return "json";
+ *      }
+ * 
+ *      get template() {
+ *          const renderContent = JSON.stringify(this.content);
+ *          return '{ "{{it.name}}": '+ renderContent +' }';
+ *      }
+ * }
+ * ```
+ */
 export abstract class GeneratedFile {
     
     private _name: string;
     private _path: string;
-    
-    // private _linkedFiles: Map<string, GeneratedFile>;
-    // private _parentFile: GeneratedFile | null;
     
     constructor(
         _name: string,
@@ -19,8 +40,6 @@ export abstract class GeneratedFile {
         this._path = _path ? normalize(_path) :dirname(_name);
         _name = basename(_name);
         this._name = this.computeName(_name);
-        // this._linkedFiles = new Map();
-        // this._parentFile = null;
     };
 
     /**
@@ -31,22 +50,6 @@ export abstract class GeneratedFile {
     computeName(name: string) {
         return name;
     }
-
-    // get linkedFiles() {
-    //     return this._linkedFiles.values();
-    // }
-
-    // linkFile(file: GeneratedFile) {
-    //     this._linkedFiles.set(file.filepath, file);
-    // }
-
-    // unlinkFile(file: GeneratedFile) {
-    //     return this._linkedFiles.delete(file.filepath);
-    // }
-
-    // setParentFile(file: GeneratedFile) {
-    //     this._parentFile = file;
-    // }
 
     /**
      * Getter returning an object that will be
