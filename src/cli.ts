@@ -5,7 +5,7 @@ import commandsRegister from "./commands";
 /**
  * Entrypoint of the CLI. Custom arguments can be given.
  */
-function main(argv: string[] = process.argv) {
+export function main(argv: string[] = process.argv) {
     program
         .name(pkg.name)
         .description(pkg.description)
@@ -22,5 +22,3 @@ if (typeof require !== 'undefined' && require.main === module) {
     // Executing this file is only for test purpose.
     main();
 }
-
-export default main;
