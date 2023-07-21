@@ -1,10 +1,7 @@
-export interface GenerateOptions {
-    style?: boolean;
+import { ComponentConfiguration } from "./config";
+
+export interface GenerateOptions extends ComponentConfiguration {
     dryRun?: boolean;
-    ts?: boolean;
-    jsx?: boolean;
-    lazy?: boolean;
-    preprocessor?: string | boolean;
 }
 
 export interface InitOptions {

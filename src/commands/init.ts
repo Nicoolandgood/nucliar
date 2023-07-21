@@ -4,23 +4,20 @@ import { ConfigurationFile } from "../interfaces/config";
 import { StyleLanguage } from "../constants/file";
 import { writeConfigurationFile } from "../utils/config";
 import { InitOptions } from "../interfaces/commands";
+import { DEFAULT_CONFIG_FILE } from "../constants/config";
 
 const questions: any[] = [
     {
         type: "toggle",
         name: "useJsx",
         message: "Generate JSX/TSX files?",
+        initial: DEFAULT_CONFIG_FILE.useJsx,
     },
     {
         type: "toggle",
         name: "useTypescript",
         message: "Use of Typescript for this project?",
-        initial: false,
-    },
-    {
-        type: "toggle",
-        name: "generateStyle",
-        message: "Generate a style sheet on component creation?",
+        initial: DEFAULT_CONFIG_FILE.useTypescript,
     },
     {
         type: "select",
@@ -33,17 +30,18 @@ const questions: any[] = [
         type: "toggle",
         name: "generateLazy",
         message: "Generate a lazy version of a component when created?",
-        initial: false,
+        initial: DEFAULT_CONFIG_FILE.generateLazy,
     },
 ]
 
 async function handler(options: InitOptions) {
     const config = await prompt<ConfigurationFile>(questions);
+    const finalConfig = { ...DEFAULT_CONFIG_FILE, ...config, }
     if(options.dryRun) {
-        console.log(config);
+        console.log(finalConfig);
         return;
     }
-    await writeConfigurationFile(config);
+    await writeConfigurationFile(finalConfig);
 }
 
 const cmd = createCommand("init")
