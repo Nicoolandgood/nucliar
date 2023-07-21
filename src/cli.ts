@@ -1,5 +1,4 @@
 import { program } from "@commander-js/extra-typings";
-import pkg from '../package.json';
 import commandsRegister from "./commands";
 
 /**
@@ -7,9 +6,9 @@ import commandsRegister from "./commands";
  */
 export function main(argv: string[] = process.argv) {
     program
-        .name(pkg.name)
-        .description(pkg.description)
-        .version(pkg.version);
+        .name(process.env.npm_package_name!)
+        .description(process.env.npm_package_description!)
+        .version(process.env.npm_package_version!);
 
     commandsRegister
         .forEach(cmd => program.addCommand(cmd));
