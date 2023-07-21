@@ -8,5 +8,5 @@ export interface GenerateOptions {
 }
 
 export interface InitOptions {
-    
+    dryRun?: boolean;
 }

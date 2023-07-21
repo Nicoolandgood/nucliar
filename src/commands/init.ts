@@ -3,6 +3,7 @@ import { prompt } from 'enquirer';
 import { ConfigurationFile } from "../interfaces/config";
 import { StyleLanguage } from "../constants/file";
 import { writeConfigurationFile } from "../utils/config";
+import { InitOptions } from "../interfaces/commands";
 
 const questions: any[] = [
     {
@@ -36,14 +37,19 @@ const questions: any[] = [
     },
 ]
 
-async function handler() {
+async function handler(options: InitOptions) {
     const config = await prompt<ConfigurationFile>(questions);
+    if(options.dryRun) {
+        console.log(config);
+        return;
+    }
     await writeConfigurationFile(config);
 }
 
 const cmd = createCommand("init")
     .alias("i")
     .description("Init the configuration file for the project.")
+    .option('-d, --dry-run', "Prevent config file generation and show result.")
     .action(handler);
 
 export default cmd;
