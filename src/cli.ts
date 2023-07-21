@@ -1,14 +1,18 @@
 import { program } from "@commander-js/extra-typings";
 import commandsRegister from "./commands";
+import { getPackageJSON } from "./utils/misc";
 
 /**
  * Entrypoint of the CLI. Custom arguments can be given.
  */
-export function main(argv: string[] = process.argv) {
+export async function main(argv: string[] = process.argv) {   
+    
+    const { name, description, version } = getPackageJSON();
+
     program
-        .name(process.env.npm_package_name!)
-        .description(process.env.npm_package_description!)
-        .version(process.env.npm_package_version!);
+        .name(name)
+        .description(description)
+        .version(version);
 
     commandsRegister
         .forEach(cmd => program.addCommand(cmd));
