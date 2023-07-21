@@ -50,6 +50,4 @@ The `type` can take many values, nucliar supports 4 out of the box: `component`,
  - [x] Generate lazy components
  - [x] Generate style sheet (with or without any preprocessor)
  - [ ] Generate custom templates
- - [ ] Use of a local configuration file
-
-This should include support for Typescript out of the box.
+ - [x] Use of a local configuration file
