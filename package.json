@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Command-line tool to create boilerplate React components.",
   "main": "dist/index.js",
+  "bin": {
+    "nucliar": "./bin/nucliar"
+  },
   "scripts": {
     "start": "node ./dist",
     "build": "rm -rf ./dist && tsc",
