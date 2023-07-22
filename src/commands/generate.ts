@@ -1,6 +1,6 @@
 import { createCommand } from "@commander-js/extra-typings";
 import { prompt } from 'enquirer';
-import { LazyComponent, DisplayComponent } from "../core/component";
+import { LazyComponent, DisplayComponent, CustomComponent } from "../core/component";
 import { ComponentType } from "../constants/component";
 import { StyleLanguage } from "../constants/file";
 import { Style } from "../core/style";
@@ -9,6 +9,7 @@ import { GenerateOptions } from "../interfaces/commands";
 import { COMPONENTS_MAP, COMPONENTS_MAP_KEYS } from "../constants/generate";
 import { loadConfigurationFile } from "../utils/config";
 import { existsSync } from "fs";
+import { getFileContent } from "../utils/misc";
 
 async function handler(type: string, name: string, options: GenerateOptions) {
 
@@ -16,12 +17,33 @@ async function handler(type: string, name: string, options: GenerateOptions) {
     const typeOptions = types[type] ?? {};
     options = { ...baseOptions, ...typeOptions, ...options };
 
-    if(!type || !(type in COMPONENTS_MAP)){
-        throw Error("Not valid type.");
-    }
+    const isVanilla = type in COMPONENTS_MAP;           // True if the type is included in nucliar.
+    const isCustom = (type in types) && !isVanilla;
 
-    const _Component = COMPONENTS_MAP[type as ComponentType];
-    const component = new _Component(name, options.useTypescript, options.useJsx);
+    let component;
+
+    if(isCustom) {
+        // Custom component type
+        if(!options.template) {
+            throw new Error(`No template found in configuration file for type "${type}".`)
+        }
+
+        if(!existsSync(options.template)) {
+            throw new Error(`The template file ${options.template} does not exist.`);
+        }
+
+        const customTemplate = await getFileContent(options.template);
+        component = new CustomComponent(name, customTemplate, options.useTypescript, options.useJsx);
+    }
+    else if (!isVanilla) {
+        const validTypes = Object.keys({ ...types, ...COMPONENTS_MAP }).join(', ');
+        throw new Error(`"${type}" is not a valid type. The value must be one of these: ${validTypes}.`);
+    }
+    else {
+        const _Component = COMPONENTS_MAP[type as ComponentType];
+        component = new _Component(name, options.useTypescript, options.useJsx);
+    }
+    
     
     if (component instanceof DisplayComponent) {
 
