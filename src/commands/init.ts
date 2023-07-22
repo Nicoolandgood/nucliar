@@ -2,7 +2,7 @@ import { createCommand } from "@commander-js/extra-typings";
 import { prompt } from 'enquirer';
 import { ConfigurationFile } from "../interfaces/config";
 import { StyleLanguage } from "../constants/file";
-import { writeConfigurationFile } from "../utils/config";
+import { configurationFileExists, writeConfigurationFile } from "../utils/config";
 import { InitOptions } from "../interfaces/commands";
 import { DEFAULT_CONFIG_FILE } from "../constants/config";
 
@@ -34,13 +34,31 @@ const questions: any[] = [
     },
     {
         type: "toggle",
+        name: "useCssModules",
+        message: "Generates style files as modules?",
+        initial: DEFAULT_CONFIG_FILE.useCssModules,
+    },
+    {
+        type: "toggle",
         name: "generateLazy",
-        message: "Generate a lazy version of a component when created?",
+        message: "Generate a lazy version when a component created?",
         initial: DEFAULT_CONFIG_FILE.generateLazy,
     },
 ]
 
 async function handler(options: InitOptions) {
+
+    if(!options.dryRun && configurationFileExists()) {
+        const { force } = await prompt<any>({
+            name: "force",
+            message: "A configuration file already exists. Overwrite it?",
+            initial: false,
+            type: "toggle",
+        });
+
+        if(!force) return;
+    }
+
     const config = await prompt<ConfigurationFile>(questions);
     const finalConfig = { ...DEFAULT_CONFIG_FILE, ...config, }
     if(options.dryRun) {
