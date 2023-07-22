@@ -48,7 +48,7 @@ async function handler(type: string, name: string, options: GenerateOptions) {
         if(options.preprocessor && options.generateStyle) {
             const preprocessor = typeof options.preprocessor == "boolean"? StyleLanguage.CSS: options.preprocessor;
             
-            const style = new Style(name, preprocessor as StyleLanguage);
+            const style = new Style(name, preprocessor as StyleLanguage, options.useCssModules);
             component.setStyle(style);
         }
     
@@ -97,6 +97,7 @@ const cmd = createCommand("generate")
     .option("-d, --dry-run", "Prevent the file creation and output the render")
     .option("--use-typescript", "Writes the component in Typescript.")
     .option("--use-jsx", "Creates the component in a JSX/TSX file.")
+    .option("--use-css-modules", "Creates style files as css modules.")
     .option("--generate-style", "Creates a style file for the component.")
     .option("--flat", "Prevent the creation of a folder for the component.")
     .option("-f, --force", "Force the component generation, ignoring potential file conflict.")

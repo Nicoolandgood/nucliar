@@ -10,6 +10,7 @@ export const DEFAULT_BASE_CONFIG: BaseConfiguration = {
     generateLazy: false,
     generateStyle: false,
     flat: false,
+    useCssModules: false,
     preprocessor: StyleLanguage.CSS,
     path: "./src/components"
 }

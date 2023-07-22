@@ -7,6 +7,7 @@ export interface BaseConfiguration {
     preprocessor: StyleLanguage;
     generateLazy: boolean;
     generateStyle: boolean;
+    useCssModules: boolean;
     flat: boolean;
     path?: string;
 }
@@ -17,6 +18,7 @@ export interface ComponentConfiguration {
     preprocessor?: StyleLanguage | string | boolean;
     generateLazy?: boolean;
     generateStyle?: boolean;
+    useCssModules?: boolean;
     template?: string;
     flat?: boolean;
     path?: string;
