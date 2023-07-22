@@ -26,10 +26,6 @@ export abstract class Component extends GeneratedFile {
         super(name, path);
     }
 
-    get template() {
-        return "";
-    }
-
     get extension() {
         const base = this.isTs ? 'ts': 'js';
         return base + (this.useJSX ? 'x': '');
