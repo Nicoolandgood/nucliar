@@ -10,6 +10,7 @@ import { COMPONENTS_MAP, COMPONENTS_MAP_KEYS } from "../constants/generate";
 import { loadConfigurationFile } from "../utils/config";
 import { existsSync } from "fs";
 import { getFileContent } from "../utils/misc";
+import { funcComponent } from "../templates/component";
 
 async function handler(type: string, name: string, options: GenerateOptions) {
 
@@ -24,22 +25,19 @@ async function handler(type: string, name: string, options: GenerateOptions) {
 
     if(isCustom) {
         // Custom component type
-        if(!options.template) {
-            throw new Error(`No template found in configuration file for type "${type}".`)
-        }
-
-        if(!existsSync(options.template)) {
+        if(options.template && !existsSync(options.template)) {
             throw new Error(`The template file ${options.template} does not exist.`);
         }
-
-        const customTemplate = await getFileContent(options.template);
+        const customTemplate = options.template? (await getFileContent(options.template)): funcComponent;
         component = new CustomComponent(name, customTemplate, options.useTypescript, options.useJsx);
     }
     else if (!isVanilla) {
+        // Not valid type
         const validTypes = Object.keys({ ...types, ...COMPONENTS_MAP }).join(', ');
         throw new Error(`"${type}" is not a valid type. The value must be one of these: ${validTypes}.`);
     }
     else {
+        // Vanilla component type
         const _Component = COMPONENTS_MAP[type as ComponentType];
         component = new _Component(name, options.useTypescript, options.useJsx);
     }
