@@ -13,9 +13,9 @@ import { getFileContent } from "../utils/misc";
 
 async function handler(type: string, name: string, options: GenerateOptions) {
 
-    const { types, ...baseOptions } = await loadConfigurationFile();
+    const { types, ...configOptions } = await loadConfigurationFile();
     const typeOptions = types[type] ?? {};
-    options = { ...baseOptions, ...typeOptions, ...options };
+    options = { ...configOptions, ...typeOptions, ...options };
 
     const isVanilla = type in COMPONENTS_MAP;           // True if the type is included in nucliar.
     const isCustom = (type in types) && !isVanilla;
