@@ -49,10 +49,10 @@ The `type` can take many values, nucliar supports 4 out of the box: `component`,
  - [x] Generate hooks
  - [x] Generate lazy components
  - [x] Generate style sheet (with or without any preprocessor)
- - [ ] Generate custom templates
+ - [x] Generate components from custom templates
  - [x] Use of a local configuration file
  - [ ] Manage errors
- - [ ] Add following keys to config file: path, template
+ - [x] Add following keys to config file: path, template
  - [ ] Create documentation
  - [ ] Automate package publishing
  - [ ] Write tests
