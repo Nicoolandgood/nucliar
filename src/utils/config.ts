@@ -3,6 +3,10 @@ import { writeFile, readFile } from 'fs/promises';
 import { cwd } from "process";
 import { join, normalize } from "path";
 import { CONFIG_FILE_NAME, DEFAULT_CONFIG_FILE } from "../constants/config";
+import { existsSync } from "fs";
+
+
+export const configurationFileExists = () => existsSync(join(cwd(), CONFIG_FILE_NAME));
 
 export async function writeConfigurationFile(config: ConfigurationFile, path?: string): Promise<boolean>  {
     const content = JSON.stringify(config, null, 2);
