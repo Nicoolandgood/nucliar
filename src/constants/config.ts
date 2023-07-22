@@ -11,6 +11,7 @@ export const DEFAULT_BASE_CONFIG: BaseConfiguration = {
     generateStyle: false,
     flat: false,
     preprocessor: StyleLanguage.CSS,
+    path: "./src/components"
 }
 
 export const DEFAULT_CONFIG_FILE: ConfigurationFile = {

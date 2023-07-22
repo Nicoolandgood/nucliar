@@ -20,6 +20,12 @@ const questions: any[] = [
         initial: DEFAULT_CONFIG_FILE.useTypescript,
     },
     {
+        type: "toggle",
+        name: "flat",
+        message: "Prevent the folder generation when a component is created?",
+        initial: DEFAULT_CONFIG_FILE.flat,
+    },
+    {
         type: "select",
         name: "preprocessor",
         message: "Use of a style preprocessor for this project?",

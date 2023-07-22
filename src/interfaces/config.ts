@@ -8,6 +8,7 @@ export interface BaseConfiguration {
     generateLazy: boolean;
     generateStyle: boolean;
     flat: boolean;
+    path?: string;
 }
 
 export interface ComponentConfiguration {
@@ -18,6 +19,7 @@ export interface ComponentConfiguration {
     generateStyle?: boolean;
     template?: string;
     flat?: boolean;
+    path?: string;
 }
 
 export interface ConfigurationFile extends BaseConfiguration {
