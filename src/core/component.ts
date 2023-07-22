@@ -3,7 +3,7 @@ import { GeneratedFile } from "./file";
 import { Style } from "./style";
 
 /**
- * Base class to generate components. 
+ * Base class used to generate components. 
  * Extend it in order to create a custom component generator class.
  * 
  * Example:
@@ -67,7 +67,7 @@ export class HookComponent extends Component {
 }
 
 /**
- * Component class use to create lazy components.
+ * Component class used to create lazy components.
  * @see https://react.dev/reference/react/lazy
  */
 export class LazyComponent extends Component {
@@ -142,7 +142,7 @@ export abstract class DisplayComponent extends Component {
 }
 
 /**
- * Display component class to generate functional components.
+ * Display component class used to generate functional components.
  * @see https://react.dev/learn/your-first-component#defining-a-component
  */
 export class FuncComponent extends DisplayComponent {
@@ -152,11 +152,32 @@ export class FuncComponent extends DisplayComponent {
 }
 
 /**
- * Display component class to generate class based components.
+ * Display component class used to generate class based components.
  * @see https://react.dev/reference/react/Component
  */
 export class ClassComponent extends DisplayComponent {
     get template() {
         return classComponent;
+    }
+}
+
+/**
+ * Display component class used to generate component from custom template.
+ */
+export class CustomComponent extends DisplayComponent {
+    
+    private _template: string;
+
+    constructor(name: string, template: string, isTs?: boolean, useJSX?: boolean, path?: string) {
+        super(name, isTs, useJSX, path);
+        this._template = template;
+    }
+
+    setTemplate(value: string) {
+        this._template = value;
+    }
+
+    get template() {
+        return this._template;
     }
 }
