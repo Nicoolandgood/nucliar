@@ -12,3 +12,7 @@ export async function getFileContent(filepath: string) {
     filepath = join(cwd(), normalize(filepath));
     return await readFile(filepath, { encoding: "utf-8" });
 }
+
+export function capitalize(input: string) {
+    return input.charAt(0).toUpperCase() + input.slice(1);
+}
