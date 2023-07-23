@@ -5,6 +5,7 @@ import { StyleLanguage } from "../constants/file";
 import { configurationFileExists, writeConfigurationFile } from "../utils/config";
 import { InitOptions } from "../interfaces/commands";
 import { DEFAULT_CONFIG_FILE } from "../constants/config";
+import { logSuccess } from "../utils/logs";
 
 const questions: any[] = [
     {
@@ -66,6 +67,7 @@ async function handler(options: InitOptions) {
         return;
     }
     await writeConfigurationFile(finalConfig);
+    logSuccess("Configuration file created successfully!");
 }
 
 const cmd = createCommand("init")
