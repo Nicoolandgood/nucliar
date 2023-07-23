@@ -137,13 +137,13 @@ As of the second part, it will only affect the type above the key. Note that all
 **Any type scoped configuration overrides its global counterpart.**
 
 Thus, if you want to use `jsx` only on function-based components, you will have to change the configuration as such:
-```json
+```json{6}
 {
     "useJsx": false,
     // ...
     "types": {
         "component": {
-            "useJsx": true, // here
+            "useJsx": true,
             "generateStyle": true
         },
         // ...
