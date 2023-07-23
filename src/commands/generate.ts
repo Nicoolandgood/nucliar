@@ -2,15 +2,17 @@ import { createCommand } from "@commander-js/extra-typings";
 import { prompt } from 'enquirer';
 import { LazyComponent, DisplayComponent, CustomComponent } from "../core/component";
 import { ComponentType } from "../constants/component";
-import { StyleLanguage } from "../constants/file";
+import { STYLE_LANGAUGE_VALUES, StyleLanguage } from "../constants/file";
 import { Style } from "../core/style";
 import { join, normalize } from "path";
 import { GenerateOptions } from "../interfaces/commands";
 import { COMPONENTS_MAP, COMPONENTS_MAP_KEYS } from "../constants/generate";
 import { loadConfigurationFile } from "../utils/config";
 import { existsSync } from "fs";
-import { getFileContent } from "../utils/misc";
+import { capitalize, getFileContent } from "../utils/misc";
 import { funcComponent } from "../templates/component";
+import { NucliarError } from "../utils/errors";
+import { getWarnText, logSuccess } from "../utils/logs";
 
 async function handler(type: string, name: string, options: GenerateOptions) {
 
@@ -26,7 +28,7 @@ async function handler(type: string, name: string, options: GenerateOptions) {
     if(isCustom) {
         // Custom component type
         if(options.template && !existsSync(options.template)) {
-            throw new Error(`The template file ${options.template} does not exist.`);
+            throw new NucliarError(`The template file ${options.template} does not exist.`);
         }
         const customTemplate = options.template? (await getFileContent(options.template)): funcComponent;
         component = new CustomComponent(name, customTemplate, options.useTypescript, options.useJsx);
@@ -34,7 +36,7 @@ async function handler(type: string, name: string, options: GenerateOptions) {
     else if (!isVanilla) {
         // Not valid type
         const validTypes = Object.keys({ ...types, ...COMPONENTS_MAP }).join(', ');
-        throw new Error(`"${type}" is not a valid type. The value must be one of these: ${validTypes}.`);
+        throw new NucliarError(`"${type}" is not a valid type. Possible types are: ${validTypes}.`);
     }
     else {
         // Vanilla component type
@@ -46,7 +48,10 @@ async function handler(type: string, name: string, options: GenerateOptions) {
     if (component instanceof DisplayComponent) {
 
         if(options.preprocessor && options.generateStyle) {
-            const preprocessor = typeof options.preprocessor == "boolean"? StyleLanguage.CSS: options.preprocessor;
+            const preprocessor = (typeof options.preprocessor == "boolean"? StyleLanguage.CSS: options.preprocessor) as StyleLanguage;
+
+            if(!STYLE_LANGAUGE_VALUES.includes(preprocessor))
+                throw new NucliarError(`"${preprocessor}" is not a valid style preprocessor. Possible values are: ${STYLE_LANGAUGE_VALUES.join(', ')}.`)
             
             const style = new Style(name, preprocessor as StyleLanguage, options.useCssModules);
             component.setStyle(style);
@@ -76,7 +81,7 @@ async function handler(type: string, name: string, options: GenerateOptions) {
         const { force } = await prompt<any>({
             name: "force",
             type: "toggle",
-            message: `A file ${component.filepath} already exists. Overwrite it?`,
+            message: getWarnText(`A file ${component.filepath} already exists. Overwrite it?`),
             initial: false,
         });
 
@@ -86,7 +91,7 @@ async function handler(type: string, name: string, options: GenerateOptions) {
     }
 
     component.create();
-    console.log(`${type} generated at ${component.filepath}`);
+    logSuccess(`${capitalize(type)} generated at ${component.filepath}`);
 }
 
 const cmd = createCommand("generate")

@@ -1,6 +1,7 @@
 import { program } from "@commander-js/extra-typings";
 import commandsRegister from "./commands";
 import { getPackageJSON } from "./utils/misc";
+import { errorHandler } from "./utils/errors";
 
 /**
  * Entrypoint of the CLI. Custom arguments can be given.
@@ -17,7 +18,9 @@ export async function main(argv: string[] = process.argv) {
     commandsRegister
         .forEach(cmd => program.addCommand(cmd));
 
-    program.parse(argv);
+    program
+        .parseAsync(argv)
+        .catch(errorHandler);
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
