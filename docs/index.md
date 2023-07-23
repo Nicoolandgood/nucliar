@@ -8,11 +8,11 @@ hero:
   tagline: Easy and modular, avoiding you repetitive boilerplate files creation.
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Get started
+      link: /guide#installation
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: See usage
+      link: /guide#usage
 
 features:
   - title: Boost your productivity
