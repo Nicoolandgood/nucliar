@@ -9,7 +9,10 @@
   "scripts": {
     "start": "node ./dist",
     "build": "rm -rf ./dist && tsc",
-    "run:dev": "ts-node ./src/cli.ts"
+    "run:dev": "ts-node ./src/cli.ts",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +21,8 @@
     "@commander-js/extra-typings": "^11.0.0",
     "@types/node": "^20.4.2",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitepress": "1.0.0-beta.6"
   },
   "dependencies": {
     "chalk": "^4.1.2",
