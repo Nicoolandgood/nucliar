@@ -18,7 +18,7 @@ export default defineConfig({
           { text: 'Introduction', link: '/introduction' },
           { text: 'Guide', link: '/guide' },
           { text: 'Commands', link: '/commands' },
-          { text: 'API', link: '/api' },
+          // { text: 'API', link: '/api' },
         ]
       }
     ],
