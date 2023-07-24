@@ -14,10 +14,11 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Overwiew',
         items: [
+          { text: 'Introduction', link: '/introduction' },
           { text: 'Guide', link: '/guide' },
-          // { text: 'Usage', link: '/guide#usage' }
+          { text: 'Commands', link: '/commands' },
+          { text: 'API', link: '/api' },
         ]
       }
     ],
