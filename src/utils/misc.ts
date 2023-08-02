@@ -2,6 +2,7 @@ import { readFile } from "fs/promises";
 import { join, normalize } from "path";
 import { cwd } from "process";
 import { PackageJSON } from "../interfaces/misc";
+import { camelCase, startCase } from "lodash";
 
 
 export function getPackageJSON(): PackageJSON{
@@ -23,4 +24,13 @@ export function capitalize(input: string) {
 
 export function getRandomToken() {
     return Math.random().toString(36).slice(2);
+}
+
+/**
+ * Converts string to pascal case.
+ * @param string The string to convert.
+ * @returns Returns the pascal cased string.
+ */
+export function pascalCase(string: string | undefined) {
+    return startCase(camelCase(string)).replace(/\s/g, '')
 }
