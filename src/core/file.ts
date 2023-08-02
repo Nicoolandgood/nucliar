@@ -47,20 +47,10 @@ export abstract class GeneratedFile {
         // Checking if path was given. If not, extracting possible
         // path in name string.
         this._path = _path ? normalize(_path) :dirname(_name);
-        _name = basename(_name);
-        this._name = this.computeName(_name);
+        this._name = basename(_name).trim();
         this._template = _template;
         this.token = getRandomToken();
     };
-
-    /**
-     * Applies changes for naming.
-     * This method is called by the constructor and the `name` setter. If you need
-     * to put your own naming scheme, you can override it. 
-     */
-    computeName(name: string) {
-        return name;
-    }
 
     setParentFile(file: GeneratedFile) {
         if(file.token === this.token)
@@ -159,6 +149,13 @@ export abstract class GeneratedFile {
      */
     get name() {
         return this._name;
+    }
+
+    /**
+     * Applies changes for naming. 
+     */
+    get computedName() {
+        return this.name;
     }
 
     /**
