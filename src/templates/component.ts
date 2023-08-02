@@ -1,8 +1,8 @@
 export const funcComponent = `
 import React from "react";
-{{@if(it.style)}}
-import './{{it.style.filename}}';
-{{/if}}
+{{@each(it.styles) => style}}
+import './{{style.filename}}';
+{{/each}}
 
 {{@if(it.isTs)}}
 interface {{it.name}}Props {}
@@ -22,6 +22,9 @@ export default {{it.name}};
 
 export const classComponent = `
 import React, { Component } from "react";
+{{@each(it.styles) => style}}
+import './{{style.filename}}';
+{{/each}}
 
 {{@if(it.isTs)}}
 interface {{it.name}}Props {}
