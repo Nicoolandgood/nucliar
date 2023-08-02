@@ -18,7 +18,7 @@ export const DEFAULT_BASE_CONFIG: BaseConfiguration = {
 export const DEFAULT_CONFIG_FILE: ConfigurationFile = {
     ...DEFAULT_BASE_CONFIG,
     types: {
-        [ComponentType.DEFAULT]: {
+        [ComponentType.FUNCTIONAL]: {
             generateStyle: true,
         },
         [ComponentType.CLASS]: {
