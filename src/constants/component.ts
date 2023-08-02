@@ -5,13 +5,7 @@ export enum ComponentType {
     CLASS = "class-component",
     HOC = "hoc",
     HOOK = "hook",
+    PROVIDER = "provider",
 }
 
 export const COMPONENT_TYPES = Object.values(ComponentType);
-
-export const COMPONENTS_TEMPLATES = {
-    [ComponentType.CLASS]: classComponent,
-    [ComponentType.FUNCTIONAL]: funcComponent,
-    [ComponentType.HOC]: hoComponent,
-    [ComponentType.HOOK]: hookComponent,
-}
