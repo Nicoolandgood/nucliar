@@ -126,7 +126,10 @@ export class HookComponent extends Component {
     }
 }
 
-
+/**
+ * Component class used to generate providers.
+ * @see https://react.dev/learn/passing-data-deeply-with-context
+ */
 export class ProviderComponent extends Component {
     constructor(
         name: string,
