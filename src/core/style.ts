@@ -13,11 +13,7 @@ export class Style extends GeneratedFile {
         private module: boolean = false,
         path?: string,
     ) {
-        super(name, path);
-    }
-    
-    get template(): string {
-        return cssStyle;
+        super(name, cssStyle, path);
     }
     
     get extension(): string {
