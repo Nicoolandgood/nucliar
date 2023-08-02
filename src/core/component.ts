@@ -1,4 +1,6 @@
-import { lazyComponent } from "../templates/component";
+import { camelCase } from "lodash";
+import { classComponent, funcComponent, hoComponent, hookComponent, lazyComponent, providerTemplate } from "../templates/component";
+import { pascalCase } from "../utils/misc";
 import { GeneratedFile } from "./file";
 import { Style } from "./style";
 
@@ -23,6 +25,10 @@ export class Component extends GeneratedFile {
         return base + (this.useJSX ? 'x': '');
     }
 
+    get computedName() {
+        return pascalCase(this.name);
+    }
+
     get styles() {
         return this.linkedFiles.filter(file => file instanceof Style) as Style[];
     }
@@ -45,5 +51,89 @@ export class LazyComponent extends Component {
 
     get extension() {
         return `lazy.${super.extension}`;
+    }
+}
+
+/**
+ * Component class used to generate functional components.
+ * @see https://react.dev/learn/your-first-component#defining-a-component
+ */
+export class FuncComponent extends Component {
+    
+    constructor(
+        name: string,
+        isTs?: boolean,
+        isJSX?: boolean,
+        path? :string,
+    ) {
+        super(name, isTs, isJSX, funcComponent, path);
+    }
+}
+
+/**
+ * Component class used to generate class based components.
+ * @see https://react.dev/reference/react/Component
+ */
+export class ClassComponent extends Component {
+    
+    constructor(
+        name: string,
+        isTs?: boolean,
+        isJSX?: boolean,
+        path? :string,
+    ) {
+        super(name, isTs, isJSX, classComponent, path);
+    }
+}
+
+/**
+ * Component class used to generate HOCs.
+ * @see https://legacy.reactjs.org/docs/higher-order-components.html
+ */
+export class HoComponent extends Component {
+
+    constructor(
+        name: string,
+        isTs?: boolean,
+        isJSX?: boolean,
+        path? :string,
+    ) {
+        super(name, isTs, isJSX, hoComponent, path);
+    }
+
+    get computedName() {
+        return camelCase(this.name);
+    }
+}
+
+/**
+ * Component class used to generate hooks.
+ * @see https://react.dev/learn/reusing-logic-with-custom-hooks
+ */
+export class HookComponent extends Component {
+
+    constructor(
+        name: string,
+        isTs?: boolean,
+        isJSX?: boolean,
+        path? :string,
+    ) {
+        super(name, isTs, isJSX, hookComponent, path);
+    }
+
+    get computedName() {
+        return camelCase(this.name);
+    }
+}
+
+
+export class ProviderComponent extends Component {
+    constructor(
+        name: string,
+        isTs?: boolean,
+        isJSX?: boolean,
+        path? :string,
+    ) {
+        super(name, isTs, isJSX, providerTemplate, path);
     }
 }
