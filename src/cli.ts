@@ -1,4 +1,4 @@
-import { program } from "@commander-js/extra-typings";
+import { Command } from "@commander-js/extra-typings";
 import commandsRegister from "./commands";
 import { getPackageJSON } from "./utils/misc";
 import { errorHandler } from "./utils/errors";
@@ -9,6 +9,7 @@ import { errorHandler } from "./utils/errors";
 export async function main(argv: string[] = process.argv) {   
     
     const { name, description, version } = getPackageJSON();
+    const program = new Command();
 
     program
         .name(name)
