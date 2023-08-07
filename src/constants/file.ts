@@ -11,7 +11,7 @@ export const LANGUAGE_EXTENTION = {
 export enum StyleLanguage {
     CSS = "css",
     LESS = "less",
-    SCASS = "scass",
+    SASS = "sass",
 }
 
 export const STYLE_LANGAUGE_VALUES = Object.values(StyleLanguage);
@@ -19,5 +19,5 @@ export const STYLE_LANGAUGE_VALUES = Object.values(StyleLanguage);
 export const STYLE_EXTENSION = {
     [StyleLanguage.CSS]: "css",
     [StyleLanguage.LESS]: "less",
-    [StyleLanguage.SCASS]: "scss",
+    [StyleLanguage.SASS]: "scss",
 } as const;

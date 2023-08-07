@@ -27,7 +27,7 @@ import { getRandomToken } from '../utils/misc';
  * }
  * ```
  */
-export abstract class GeneratedFile {
+export class GeneratedFile {
     
     private _name: string;
     private _path: string;
@@ -140,15 +140,16 @@ export abstract class GeneratedFile {
 
     /**
      * Getter returning the file extension. 
-     * - Needs to be implemented.
      */
-    abstract get extension(): string;
+    get extension(): string {
+        return "";
+    }
 
     /**
      * File short name.
      */
     get name() {
-        return this._name;
+        return this._name || `file_${this.token}`;
     }
 
     /**
@@ -162,7 +163,7 @@ export abstract class GeneratedFile {
      * Complete file name (name + extension).
      */
     get filename() {
-        return `${this.name}.${this.extension}`;
+        return this.name + (this.extension? `.${this.extension}`: '');
     }
 
     /**

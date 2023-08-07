@@ -9,7 +9,7 @@ export class Style extends GeneratedFile {
 
     constructor(
         name: string,
-        private preprocessor: StyleLanguage,
+        private preprocessor: StyleLanguage = StyleLanguage.CSS,
         private module: boolean = false,
         path?: string,
     ) {
@@ -17,6 +17,8 @@ export class Style extends GeneratedFile {
     }
     
     get extension(): string {
+        if(!(this.preprocessor in STYLE_EXTENSION))
+            return "";
         return `${this.module? 'module.': ''}${STYLE_EXTENSION[this.preprocessor]}`;
     }
 }
