@@ -145,9 +145,7 @@ At the root of your project, create a directory named `templates`:
 mkdir templates
 ```
 
-::: info Info
-In fact, you can name your directory by anything you want. `templates` is used by convention. 
-:::
+>In fact, you can name your directory by anything you want. `templates` is used by convention. 
 
 Inside it, let's create a file `effect-component.txt` with this content:
 ```txt
@@ -166,9 +164,9 @@ export default {{it.name}};
 ```
 
 This file contains the template that will be rendered by Nucliar when generating `effect-component`.
-::: tip Note
-The template engine used by Nucliar is [Squirrelly](https://squirrelly.js.org/). You can learn more about the template syntax [here](https://squirrelly.js.org/docs/syntax/overview).
-:::
+
+>The template engine used by Nucliar is [Squirrelly](https://squirrelly.js.org/). You can learn more about the template syntax [here](https://squirrelly.js.org/docs/syntax/overview).
+
 The `it` object contains the component render data.
 
 After that, let's edit `nucliar.json`:
