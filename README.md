@@ -1,7 +1,5 @@
 # Nucliar
 A command-line tool helping React developers by generating boilerplate code for them.
-More than that, it aims to be a modular solution by adapting itself to the user. Indeed, customizing its behavior is possible via its template system and its configuration never be that easy. If any of the included types doesn't suite a project needs, any additionnal type can be configured by adding a new template and tweaking some settings.
-
 
 ## :arrow_down: Installation
 
@@ -225,7 +223,7 @@ export default MyPrecious;
 >The example above will now generate specific Typescript code. In order to do that, you will have to use the `it.useTypescript` property inside a `if` statement in the template.
 
 
-## :map: Roadmap
+## :round_pushpin: Roadmap
 
  - [x] Generate functional components
  - [x] Generate class components 
