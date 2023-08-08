@@ -238,5 +238,5 @@ export default MyPrecious;
  - [ ] Complete documentation
  - [ ] Automate package publishing
  - [ ] Write tests (some made but still wip)
- - [ ] Implement a plugin API give the opportunity to customize Nucliar even more
+ - [ ] Implement a plugin API giving the opportunity to customize Nucliar even more
  
