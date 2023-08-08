@@ -10,9 +10,6 @@
     "start": "node ./dist",
     "build": "rm -rf ./dist && tsc",
     "run:dev": "ts-node ./src/cli.ts",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
     "test": "jest"
   },
   "keywords": ["react", "cli", "tool", "generator", "component"],
