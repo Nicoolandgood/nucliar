@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@commander-js/extra-typings':
+    specifier: ^11.0.0
+    version: 11.0.0(commander@11.0.0)
   chalk:
     specifier: ^4.1.2
     version: 4.1.2
@@ -21,9 +24,6 @@ dependencies:
     version: 9.0.0
 
 devDependencies:
-  '@commander-js/extra-typings':
-    specifier: ^11.0.0
-    version: 11.0.0(commander@11.0.0)
   '@types/jest':
     specifier: ^29.5.3
     version: 29.5.3
@@ -393,7 +393,7 @@ packages:
       commander: 11.0.x
     dependencies:
       commander: 11.0.0
-    dev: true
+    dev: false
 
   /@cspotcode/source-map-support@0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -1061,6 +1061,7 @@ packages:
   /commander@11.0.0:
     resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
     engines: {node: '>=16'}
+    dev: false
 
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
