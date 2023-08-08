@@ -15,6 +15,7 @@
   "keywords": ["react", "cli", "tool", "generator", "component"],
   "author": "Teaflex",
   "license": "MIT",
+  "types": "./dist/index.d.ts",
   "devDependencies": {
     "@commander-js/extra-typings": "^11.0.0",
     "@types/jest": "^29.5.3",
