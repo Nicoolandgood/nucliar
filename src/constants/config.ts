@@ -12,7 +12,7 @@ export const DEFAULT_BASE_CONFIG: BaseConfiguration = {
     flat: false,
     useCssModules: false,
     preprocessor: StyleLanguage.CSS,
-    path: "./src/components"
+    path: "./"
 }
 
 export const DEFAULT_CONFIG_FILE: ConfigurationFile = {
