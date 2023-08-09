@@ -68,7 +68,7 @@ At the end, you should have a file with a similar content:
     "flat": false,
     "useCssModules": false,
     "preprocessor": "css",
-    "path": "./src/components",
+    "path": "./",
     "types": {
         "component": {
             "generateStyle": true
@@ -97,7 +97,7 @@ This file can be divided in two parts:
     "flat": false,
     "useCssModules": false,
     "preprocessor": "css",
-    "path": "./src/components",
+    "path": "./",
 
     // Type scoped configuration
     "types": {
@@ -218,7 +218,7 @@ export default MyPrecious;
 ```
 
 
->The example above will now generate specific Typescript code. In order to do that, you will have to use the `it.useTypescript` property inside a `if` statement in the template.
+>The example above will **not** generate specific Typescript code. In order to do that, you will have to use the `it.useTypescript` property inside a `if` statement in the template.
 
 
 ## :round_pushpin: Roadmap
