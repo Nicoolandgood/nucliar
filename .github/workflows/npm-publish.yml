@@ -12,27 +12,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - uses: pnpm/action-setup@v2
+      - name: Installing pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
+      - name: Setting up node
+        uses: actions/setup-node@v3
+        with:
           node-version: 16
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm test
+          cache: pnpm
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Running tests
+        run: pnpm test
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - uses: pnpm/action-setup@v2
+      - name: Installing pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
+      - name: Setting up node
+        uses: actions/setup-node@v3
+        with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-      - run: pnpm publish --no-git-checks
+          cache: pnpm
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Building
+        run: pnpm build
+      - name: Publishing to NPM
+        run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
