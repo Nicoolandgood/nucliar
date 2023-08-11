@@ -1,17 +1,10 @@
 {
   "name": "nucliar",
   "version": "0.1.1",
-  "description": "Command-line tool to generate React components.",
-  "main": "dist/index.js",
-  "bin": {
-    "nucliar": "./bin/nucliar"
-  },
-  "scripts": {
-    "start": "node ./dist",
-    "build": "rm -rf ./dist && tsc",
-    "run:dev": "ts-node ./src/cli.ts",
-    "test": "jest"
-  },
+  "description": "Command-line tool to generate React components",
+  "author": "Teaflex",
+  "license": "MIT",
+  "homepage": "https://github.com/Nicoolandgood/nucliar#readme",
   "keywords": [
     "react",
     "cli",
@@ -19,9 +12,24 @@
     "generator",
     "component"
   ],
-  "author": "Teaflex",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nicoolandgood/nucliar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nicoolandgood/nucliar/issues"
+  },
+  "main": "dist/index.js",
+  "bin": {
+    "nucliar": "./bin/nucliar"
+  },
   "types": "./dist/index.d.ts",
+  "scripts": {
+    "start": "node ./dist",
+    "build": "rm -rf ./dist && tsc",
+    "run:dev": "ts-node ./src/cli.ts",
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.3",
     "@types/lodash": "^4.14.196",
