@@ -238,7 +238,7 @@ export default MyPrecious;
  - [x] Manage errors
  - [x] Add following keys to config file: path, template
  - [ ] Complete documentation
- - [ ] Automate package publishing
+ - [x] Automate package publishing
  - [ ] Write tests (some made but still wip)
  - [ ] Implement a plugin API giving the opportunity to customize Nucliar even more
  
