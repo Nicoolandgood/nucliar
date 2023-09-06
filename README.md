@@ -224,6 +224,22 @@ export default MyPrecious;
 
 >The example above will **not** generate specific Typescript code. In order to do that, you will have to use the `it.useTypescript` property inside a `if` statement in the template.
 
+### The `it` object
+
+This object contains the data exposed to the template by the engine.
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `name` | `string` | File short name |
+| `computedName` | `string` | `name` with applied changes for convention naming. It's recommended to use this property to name your components inside the template. |
+| `path` | `string` | Path of the file directory location. |
+| `extension` | `string` | The file extension. |
+| `filename` | `string` | Complete file name (`name` + `extension`). |
+| `filepath` | `string` | Complete file path (`path` + `filename`). |
+| `linkedFiles` | `GeneratedFile[]` | List of files linked to the current one. They share the same preperties as `it`. |
+| `styles` | `Style[]` | List of style files linked to the current component file. They share the same preperties as `it`. |
+| `token` | `string` | A random string generated on file creation. |
+
 
 ## :round_pushpin: Roadmap
 
