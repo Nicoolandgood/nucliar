@@ -222,7 +222,7 @@ const MyPrecious = (props = initProps) => {
 export default MyPrecious;
 ```
 
->The example above will **not** generate specific Typescript code. In order to do that, you will have to use the `it.useTypescript` property inside a `if` statement in the template.
+>The example above will **not** generate specific Typescript code. In order to do that, you will have to use the `it.isTs` property inside a `if` statement in the template.
 
 ### The `it` object
 
@@ -239,6 +239,8 @@ This object contains the data exposed to the template by the engine.
 | `linkedFiles` | `GeneratedFile[]` | List of files linked to the current one. They share the same preperties as `it`. |
 | `styles` | `Style[]` | List of style files linked to the current component file. They share the same preperties as `it`. |
 | `token` | `string` | A random string generated on file creation. |
+| `isTs` | `boolean` | Flag set to `true` if the file use Typescript. |
+| `isJsx` | `boolean` | Flag set to `true` if the file use JSX. |
 
 
 ## :round_pushpin: Roadmap
