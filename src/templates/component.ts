@@ -7,16 +7,15 @@ import './{{style.filename}}';
 {{@if(it.isTs)}}
 interface {{it.computedName}}Props {}
 
-const initProps: {{it.computedName}}Props = {};
-{{#else}}
-const initProps = {};
 {{/if}}
-
-const {{it.computedName}}{{@if(it.isTs)}}: React.FC<{{it.computedName}}Props>{{/if}} = (props = initProps) => {
+{{@if(it.isTs)}}
+const {{it.computedName}}: React.FC<{{it.computedName}}Props> = ({...props}) => {
+{{#else}}
+const {{it.computedName}} = ({...props}) => {
+{{/if}}
     return <></>; 
 }
 
-{{it.computedName}}.defaultProps = initProps;
 export default {{it.computedName}};
 `;
 
@@ -86,15 +85,15 @@ import React, { lazy, Suspense } from "react";
 
 {{@if(it.isTs)}}
 interface {{it.computedName}}Props {}
-
-const initProps: {{it.computedName}}Props = {};
-{{#else}}
-const initProps = {};
 {{/if}}
 
 const {{it.computedName}}Lazy = lazy(() => import("./{{it.computedName}}"));
 
-const {{it.computedName}}{{@if(it.isTs)}}: React.FC<{{it.computedName}}Props>{{/if}} = (props = initProps) => {
+{{@if(it.isTs)}}
+const {{it.computedName}}: React.FC<{{it.computedName}}Props> = ({...props}) => {
+{{#else}}
+const {{it.computedName}} = ({...props}) => {
+{{/if}}
 
     const renderFallback = () => <>loading...</>;
 
@@ -103,7 +102,6 @@ const {{it.computedName}}{{@if(it.isTs)}}: React.FC<{{it.computedName}}Props>{{/
     </Suspense>;
 }
 
-{{it.computedName}}.defaultProps = initProps;
 export default {{it.computedName}};
 `;
 
